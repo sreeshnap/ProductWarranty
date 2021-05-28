@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="warranty.tree" model="ir.ui.view">
+        <field name="name">problem.tree</field>
+        <field name="model">warranty.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="invoice_ids"/>
+
+                <field name="product"/>
+                <field name="lot_number"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="warranty.form" model="ir.ui.view">
+        <field name="name">prwarranty</field>
+        <field name="model">warranty.request</field>
+        <field name="arch" type="xml">
+            <p class="non_content_creation">create the request</p>
+            <form>
+                <group>
+                    <group>
+                        <field name="invoice_ids"/>
+                        <field name="customer_name"/>
+                        <field name="lot_number"/>
+                    </group>
+                    <group>
+                        <field name="date_order"/>
+                        <field name="purchase_date"/>
+                        <field name="warranty_method"/>
+                        <field name="warranty_updation"/>
+                        <field name="warranty_type"/>
+
+                    </group>
+                </group>
+                <group>
+                    <field name="product"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="test_action">
+        <field name="name">Create Request</field>
+        <field name="res_model">warranty.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="main_warranty_request_menu" name="Warranty Request"/>
+    <menuitem id="warranty_request_menu" name="Warranty Request" parent="main_warranty_request_menu"/>
+    <menuitem id="warranty_menu" name="warranty" parent="warranty_request_menu" action="test_action"/>
+</odoo>
