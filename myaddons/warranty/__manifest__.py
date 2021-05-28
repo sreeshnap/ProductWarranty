@@ -6,11 +6,13 @@
     'live_test_url': 'https://youtu.be/5GwbWciCJDw',
     'category': 'Uncategorized',
     'website': "https://www.openhrms.com",
-    'depends': ['base','sale','account'],
+    'depends': ['base','sale','account','purchase_stock'],
     'data': [
         'security/ir.model.access.csv',
         'view/view.xml',
         'data/sequence.xml',
+        'view/produ.xml',
+
     ],
     'demo': [],
     'license': "AGPL-3",
