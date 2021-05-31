@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta
 from odoo import models, fields, api
 
 
@@ -10,21 +10,12 @@ class WarrantyProblem(models.Model):
     customer_name = fields.Char(string="Customer Name", related='invoice_ids.partner_id.name')
     product = fields.Many2one(string="Product Name", related='invoice_ids.invoice_line_ids.product_id')
     lot_number = fields.Many2one(string="Lot Number", related='product.stock_move_ids.move_line_ids.lot_id')
-    purchase_date = fields.Date(string="Invoice Date", compute="get_purchase_date")
-    date_order = fields.Datetime(string="Date", default=fields.Datetime.now)
+    purchase_date = fields.Date(string="Invoice Date", related='invoice_ids.invoice_date')
+    date_order = fields.Date(string="Date")
 
     state = fields.Selection([('draft', 'Draft'), ('to approve', 'To approve'), ('approved', 'Approved'),
                               ('cancel', 'Cancel')],
                              default='draft', string="Status")
-
-    #@api.depends('invoice_ids')
-    #def get_lot_number(self):
-    #        self.lot_number = self.invoice_ids.invoice_line_ids.product_id.purchase_order_line_ids.lot_id
-
-    @api.depends('invoice_ids')
-    def get_purchase_date(self):
-        self.purchase_date = self.invoice_ids.invoice_date
-
 
     name = fields.Char(string="Service Number", readonly=True, required=True, copy=False, default='New')
 
@@ -36,23 +27,24 @@ class WarrantyProblem(models.Model):
         result = super(WarrantyProblem, self).create(vals)
         return result
 
-    warranty_updation = fields.Integer(string="Warranty Duration")
-    warranty_method = fields.Selection(
-        [
-            ("service", "Service"),
-            ("Replacement", "Replacement"),
-        ],
-        string="Warranty Method",
-    )
+    warranty_updation = fields.Date(string="Warranty Expiry", compute='_compute_warranty_end')
 
-    warranty_type = fields.Selection(
-        [
-            ("day", "Day(s)"),
-            ("week", "Week(s)"),
-            ("month", "Month(s)"),
-            ("year", "Year(s)"),
-        ],
-        string="Warranty Type",
-        required=True,
-        default="day",
-    )
+    @api.depends('invoice_ids')
+    def _compute_warranty_end(self):
+        start_date = self.purchase_date
+        end_date = self.product.warranty_updated
+        date_warranty = start_date
+        if self.product.has_warranty:
+            date_warranty = start_date + timedelta(days=end_date)
+        self.warranty_updation = date_warranty
+
+
+    is_warranty_product = fields.Boolean(string="Warranty Product", default=False)
+
+    @api.onchange('warranty_updation')
+    def warranty_updation_check(self):
+        if self.warranty_updation:
+            self.is_warranty_product = False
+        else:
+            self.is_warranty_product = True
+

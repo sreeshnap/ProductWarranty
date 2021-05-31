@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="warranty.tree" model="ir.ui.view">
         <field name="name">problem.tree</field>
@@ -15,13 +15,13 @@
     </record>
 
     <record id="warranty.form" model="ir.ui.view">
-        <field name="name">prwarranty</field>
+        <field name="name">problem.form</field>
         <field name="model">warranty.request</field>
         <field name="arch" type="xml">
-            <p class="non_content_creation">create the request</p>
+
             <form>
                 <header>
-                    <field name="state" widget="statusbar" options="{'clickable': '1'}" />
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
                 </header>
 
                 <group>
@@ -33,15 +33,20 @@
                     <group>
                         <field name="date_order"/>
                         <field name="purchase_date"/>
-                        <field name="warranty_method"/>
-                        <field name="warranty_updation"/>
-                        <field name="warranty_type"/>
+                        <field name="is_warranty_product"/>
+
+<!--                        <field name="warranty_updation"/>-->
+
+                        <field name="warranty_updation" options="{'no_quick_create':True, 'no_create_edit': True}"
+                       attrs="{'invisible':[('is_warranty_product', '=', False)]}"/>
+
                     </group>
                 </group>
                 <group>
                     <field name="product"/>
                 </group>
             </form>
+
         </field>
     </record>
 
