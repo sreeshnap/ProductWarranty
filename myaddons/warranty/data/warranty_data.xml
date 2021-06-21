@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <!--        <record forcecreate="True" id="warranty_request_warranty_expiry" model="warranty.request">-->
+        <!--        </record>-->
+        <record id="stage_0" model="warranty.request">
+            <field name="name">Draft</field>
+        </record>
+
+        <record id="stage_1" model="warranty.request">
+            <field name="name">To approve</field>
+        </record>
+
+        <record id="stage_2" model="warranty.request">
+            <field name="name">Approved</field>
+        </record>
+
+    </data>
+</odoo>

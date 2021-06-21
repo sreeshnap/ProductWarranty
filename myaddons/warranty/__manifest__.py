@@ -12,8 +12,9 @@
         'view/view.xml',
         'data/sequence.xml',
         'view/produ.xml',
-
-
+        'security/security.xml',
+        # 'data/warranty_data.xml',
+        # 'view/invo.xml',
     ],
     'demo': [],
     'license': "AGPL-3",

@@ -14,7 +14,7 @@
                 <field name="is_show_warranty" attrs="{'invisible':1}"/>
                 <field name="warranty_types" options="{'no_quick_create':True, 'no_create_edit': True}"
                        attrs="{'invisible':[('is_show_warranty', '=', False)]}"/>
-                <field name="warranty_updated" options="{'no_quick_create':True, 'no_create_edit': True}"
+                <field name="warranty_duration" options="{'no_quick_create':True, 'no_create_edit': True}"
                        attrs="{'invisible':[('is_show_warranty', '=', False)]}"/>
                 <field name="warranty_period" options="{'no_quick_create':True, 'no_create_edit': True}"
                        attrs="{'invisible':[('is_show_warranty', '=', False)]}"/>

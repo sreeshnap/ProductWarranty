@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.module.category" id="module_management">
+        <field name="name">Prwarranty</field>
+        <field name="description">User access level for warranty module</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="prwarranty_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="module_management"/>
+    </record>
+    <record id="prwarranty_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_management"/>
+        <field name="implied_ids" eval="[(4, ref('prwarranty_user'))]"/>
+    </record>
+
+
+</odoo>
