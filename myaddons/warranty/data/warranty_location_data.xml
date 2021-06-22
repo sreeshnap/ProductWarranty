@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <record id="location_mylocation" model="stock.location">
+            <field name="name">MyLocation</field>
+            <field name="location_id" ref="stock.stock_location_locations_virtual"/>
+            <field name="usage">inventory</field>
+            <field name="company_id"/>
+        </record>
+    </data>
+</odoo>
