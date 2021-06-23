@@ -15,6 +15,8 @@
         'security/security.xml',
         'data/warranty_location_data.xml',
         'view/invo.xml',
+        # 'view/sale_addmenu.xml',
+
     ],
     'demo': [],
     'license': "AGPL-3",

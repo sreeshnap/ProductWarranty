@@ -1,0 +1,26 @@
+<odoo>
+    <record id="sale_menu_form_inherit" model="ir.ui.view">
+        <field name="name">menu.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="sale_order_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_menu_tree_inherit" model="ir.ui.view">
+        <field name="name">menu.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="sale_order_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="warranty_report" name="Warranty Report" parent="sale.sale_order_menu" action="test_action"/>
+
+</odoo>
