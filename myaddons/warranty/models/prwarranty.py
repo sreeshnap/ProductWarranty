@@ -26,6 +26,8 @@ class ProductWarranty(models.Model):
 
     warranty_expiry = fields.Date(string="Warranty Expiry", compute='_compute_warranty_expiry')
 
+    move = fields.Many2one("stock.move")
+
     @api.model
     def create(self, vals):
         if vals.get('name', 'New') == 'New':
@@ -48,18 +50,37 @@ class ProductWarranty(models.Model):
 
     def action_approve(self):
         self.state = 'approved'
+        # if self.state.approved:
+        #     @api.model
+        #     def action_reproduction(self):
+        #     # stock_location = self.env.ref('stock.stock_location_stock')
+        #         stock_location = self.env.ref('stock.location_mylocation')
+        #         customer_location = self.env.ref('stock.stock_location_customer')
+        #         uom_unit = self.env.ref('uom.product_uom_unit')
+        #         uom_dozen = self.env.ref('uom.product_uom_dozen')
+        #         product = self.env.ref('invoice_id.invoice_line_ids.product_id')
+        #         move = self.env['stock.move'].create({
+        #             'name': 'Use on MyLocation',
+        #             'location_id': customer_location.id,
+        #             'location_dest_id': stock_location.id,
+        #             'product_id': product.id,
+        #             'product_uom': product.uom_id.id,
+        #             'product_uom_qty': 1,
+        #         })
+        #         move._action_confirm()
+        #         move._action_assign()
+        #         move.move_line_ids.write({'qty_done': 1})
+        #         move._action_done()
 
-
-
-    def action_moves(self):
-         #pass
+    def action_product_moves(self):
+        #pass
         return {
             'name': 'Form',
-            'res_id': self.stock.view_move_tree.id,
-            'view_type': 'form',
             'res_model': 'stock.move',
+            'res_id': self.move,
+            'view_type': 'form',
             'view_mode': 'form',
-            'type': 'ir.actions.act_window'
+            'type': 'ir.actions_act.window'
         }
 
 

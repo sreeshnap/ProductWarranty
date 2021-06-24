@@ -23,7 +23,7 @@
 
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_moves" class="oe_stat_button" icon="fa-arrows"
+                        <button name="action_product_moves" class="oe_stat_button" icon="fa-arrows"
                                 type="object" string="Moves"
                                 widget="statinfo"/>
                     </div>
@@ -63,10 +63,10 @@
         <field name="res_model">warranty.request</field>
         <field name="view_mode">tree,form</field>
     </record>
+
     <menuitem id="main_warranty_request_menu" name="Warranty Request"/>
     <menuitem id="warranty_request_menu" name="Warranty Request" parent="main_warranty_request_menu"/>
     <menuitem id="warranty_menu" name="warranty" parent="warranty_request_menu" action="test_action"/>
-
 
 
 </odoo>

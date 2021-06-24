@@ -16,6 +16,7 @@
         'data/warranty_location_data.xml',
         'view/invo.xml',
         # 'view/sale_addmenu.xml',
+        # 'view/stock_move.xml',
 
     ],
     'demo': [],

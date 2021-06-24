@@ -1,13 +1,11 @@
 <odoo>
-    <act_window
-            id="wiz_stock_quant_location_action"
-            name="Move to location..."
-            res_model="wiz.stock.move.location"
-            binding_model="stock.quant"
-            view_mode="form"
-            context="{'origin_location_disable': True}"
-            target="new"
-            groups="stock.group_stock_user"
-    />
-
+     <record id="stock_test_move" model="ir.ui.view">
+        <field name="name">stock</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree"/>
+        <field name="arch" type="xml">
+             <field name="move_line"/>
+             <button name="test_in_1" type="object" />
+        </field>
+     </record>
         </odoo>
