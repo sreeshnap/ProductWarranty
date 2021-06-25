@@ -20,19 +20,23 @@
         <field name="arch" type="xml">
 
             <form>
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                    <button name="action_submit" string="Submit" type="object" class="oe_highlight"
+                            groups="warranty.prwarranty_user"/>
+                    <button name="action_approve" string="Approve" type="object" class="oe_highlight"
+                            groups="warranty.prwarranty_manager"/>
+                    <button name="action_return" string="Return Product" type="object" class="oe_highlight"
+                            attrs="{'invisible':[('state','!=','product received')]}"/>
 
+                </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="action_product_moves" class="oe_stat_button" icon="fa-arrows"
                                 type="object" string="Moves"
                                 widget="statinfo"/>
                     </div>
-                    <header>
-                        <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
-                        <button name="action_submit" string="Submit" type="object" class="oe_highlight" group="group_User,group_Manager"/>
-                        <button name="action_approve" string="Approve" type="object" class="oe_highlight" group="Manager"/>
-                        <button name="action_return" string="Return Product" type="object" class="oe_highlight" attrs="{'invisible':[('state','!=','product received')]}"/>
-                    </header>
+
                     <group>
                         <group>
                             <field name="invoice_id"/>
@@ -68,5 +72,6 @@
     <menuitem id="warranty_request_menu" name="Warranty Request" parent="main_warranty_request_menu"/>
     <menuitem id="warranty_menu" name="warranty" parent="warranty_request_menu" action="test_action"/>
 
+    <menuitem id="menu_sales_warranty" name="Warranty Report" parent="sale.sale_menu_root" action="warranty_wizard_test_action"/>
 
 </odoo>

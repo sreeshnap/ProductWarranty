@@ -1,0 +1,28 @@
+<odoo>
+
+        <record id="warranty_report_form_view_wizard" model="ir.ui.view">
+            <field name="name">warranty.report.form.view.wizard</field>
+            <field name="model">warranty.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Warranty Report">
+                        <group>
+                            <field name="product_name_id"/>
+                            <field name="date"/>
+                        </group>
+                        <footer>
+                            <button name="print_report" string="Print" type="object" class="oe_highlight"/>
+                        </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="warranty_wizard_test_action" model="ir.actions.act_window">
+            <field name="name">warranty.report.view.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">warranty.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+</odoo>

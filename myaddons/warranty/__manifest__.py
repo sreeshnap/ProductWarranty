@@ -17,6 +17,9 @@
         'view/invo.xml',
         # 'view/sale_addmenu.xml',
         # 'view/stock_move.xml',
+        'wizard/warranty_report_wizard_view.xml',
+        'reports/report_pdf.xml',
+        'reports/report_template.xml',
 
     ],
     'demo': [],

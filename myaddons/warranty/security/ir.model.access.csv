@@ -3,3 +3,6 @@ access_warranty_request,warranty.request,model_warranty_request,base.group_user,
 
 access_manager,Access Manager,model_warranty_request,prwarranty_manager,1,1,1,1
 access_user,Access user,model_warranty_request,prwarranty_user,1,1,1,0
+
+access_warranty_report_wizard,warranty.report.wizard,model_warranty_report_wizard,base.group_user,1,1,1,1
+

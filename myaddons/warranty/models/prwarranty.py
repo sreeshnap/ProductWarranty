@@ -6,7 +6,6 @@ class ProductWarranty(models.Model):
     _name = "warranty.request"
     _description = "Warranty Request"
 
-
     invoice_id = fields.Many2one('account.move', string="Invoice")
     customer_id = fields.Many2one(string="Customer Name", related='invoice_id.partner_id')
     # product_id = fields.Many2one('product.product', string="Product Name", domain="[('id', '=', invoice_id.invoice_line_ids.product_id)]")
@@ -26,7 +25,7 @@ class ProductWarranty(models.Model):
 
     warranty_expiry = fields.Date(string="Warranty Expiry", compute='_compute_warranty_expiry')
 
-    move = fields.Many2one("stock.move")
+    move_id = fields.Many2one("stock.move")
 
     @api.model
     def create(self, vals):
@@ -50,39 +49,42 @@ class ProductWarranty(models.Model):
 
     def action_approve(self):
         self.state = 'approved'
-        # if self.state.approved:
-        #     @api.model
-        #     def action_reproduction(self):
-        #     # stock_location = self.env.ref('stock.stock_location_stock')
-        #         stock_location = self.env.ref('stock.location_mylocation')
-        #         customer_location = self.env.ref('stock.stock_location_customer')
-        #         uom_unit = self.env.ref('uom.product_uom_unit')
-        #         uom_dozen = self.env.ref('uom.product_uom_dozen')
-        #         product = self.env.ref('invoice_id.invoice_line_ids.product_id')
-        #         move = self.env['stock.move'].create({
-        #             'name': 'Use on MyLocation',
-        #             'location_id': customer_location.id,
-        #             'location_dest_id': stock_location.id,
-        #             'product_id': product.id,
-        #             'product_uom': product.uom_id.id,
-        #             'product_uom_qty': 1,
-        #         })
-        #         move._action_confirm()
-        #         move._action_assign()
-        #         move.move_line_ids.write({'qty_done': 1})
-        #         move._action_done()
+        # if self.state == 'approved':
+        #     action_return_product()
+
+
+    @api.model
+    def action_return_product(self):
+        # stock_location = self.env.ref('stock.stock_location_stock')
+        stock_location = self.env.ref('stock.location_mylocation')
+        customer_location = self.env.ref('stock.stock_location_customer')
+        # uom_unit = self.env.ref('uom.product_uom_unit')
+        # uom_dozen = self.env.ref('uom.product_uom_dozen')
+        product = self.env.ref('invoice_id.invoice_line_ids.product_id')
+        move = self.env['stock.move'].create({
+            'name': 'Use on MyLocation',
+            'location_id': customer_location.id,
+            'location_dest_id': stock_location.id,
+            'product_id': product.id,
+            'product_uom': product.uom_id.id,
+            'product_uom_qty': 1,
+        })
+        move._action_confirm()
+        move._action_assign()
+        move.move_line_ids.write({'qty_done': 1})
+        move._action_done()
+
 
     def action_product_moves(self):
-        #pass
+        # pass
         return {
             'name': 'Form',
             'res_model': 'stock.move',
-            'res_id': self.move,
+            'res_id': self.move_id.id,
             'view_type': 'form',
             'view_mode': 'form',
-            'type': 'ir.actions_act.window'
+            'type': 'ir.actions.act_window'
         }
-
 
     def action_return(self):
         pass
