@@ -1,20 +1,61 @@
 <odoo>
 
-    <!--    <template id="report_warranty_cards">-->
-    <!--        <t t-call="web.html_container">-->
-    <!--            <t t-foreach="docs" t-as="doc">-->
-    <!--                <h2>warranty pdf</h2>-->
-    <!--            </t>-->
-    <!--        </t>-->
-    <!--    </template>-->
-
-
     <template id="print_reports_pdf">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="doc">
-<!--                <t t-call="report_warranty_cards"/>-->
-                <h2>TestPrint</h2>
+            <t t-call="web.external_layout">
+                <div class="page">
+                                        <h1 align="center">
+                                            Warranty Report
+                                        </h1>
+                    <div class="oe_structure"/>
+                    <div class="row">
+                        <table class="table table_condensed">
+                            <thead>
+                                <tr>
+                                    <t t-foreach="docs" t-as="doc">
+                                        <!--                                    <t t-call="report_warranty_cards"/>-->
+<!--                                        <h2>TestPrint</h2>-->
+                                    </t>
+                                </tr>
+                                <tr>
+                                    <th style="text-align:left;">
+                                        <strong>Sl No:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Product Name:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Lot:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Customer Name:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Price:</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="selected_product_name" t-as="o">
+                                    <tr>
+                                        <td style="text_align:left;">
+                                            <t t-esc="o['Product_Name']"/>
+                                        </td>
+                                        <td style="text_align:left;">
+                                            <t t-esc="o['Lot']"/>
+                                        </td>
+                                        <td style="text_align:left;">
+                                            <t t-esc="o['Customer_Name']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </t>
         </t>
+
     </template>
 </odoo>
