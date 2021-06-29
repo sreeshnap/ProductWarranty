@@ -6,13 +6,14 @@ class ProductWarranty(models.Model):
     _name = "warranty.request"
     _description = "Warranty Request"
 
+
     invoice_id = fields.Many2one('account.move', string="Invoice")
-    customer_id = fields.Many2one(string="Customer Name", related='invoice_id.partner_id')
+    customer_id = fields.Many2one(string="Customer Name", related='invoice_id.partner_id', store=True)
     # product_id = fields.Many2one('product.product', string="Product Name", domain="[('id', '=', invoice_id.invoice_line_ids.product_id)]")
     product_id = fields.Many2one('product.product', string="Product Name",
-                                 related='invoice_id.invoice_line_ids.product_id')
+                                 related='invoice_id.invoice_line_ids.product_id', store=True)
     # product_id = fields.Many2one('product.product', string="Product Name")
-    lot_id = fields.Many2one(string="Lot Number", related='product_id.stock_move_ids.move_line_ids.lot_id')
+    lot_id = fields.Many2one(string="Lot Number", related='product_id.stock_move_ids.move_line_ids.lot_id', store=True)
     invoice_date = fields.Date(string="Invoice Date", related='invoice_id.invoice_date')
     request_date = fields.Date(string="Date")
 
@@ -26,6 +27,8 @@ class ProductWarranty(models.Model):
     warranty_expiry = fields.Date(string="Warranty Expiry", compute='_compute_warranty_expiry')
 
     move_id = fields.Many2one("stock.move")
+
+    # price = fields.Integer(related='product_id.standard_price', store=True)
 
     @api.model
     def create(self, vals):
@@ -55,20 +58,19 @@ class ProductWarranty(models.Model):
 
     @api.model
     def action_approve_warranty(self):
-        # customer_location = self.env.ref('stock.stock_location_stock')
-        stock_location = self.env.ref('location_mylocation')
-        customer_location = self.env.ref('location_customer')
-        # product = self.env.ref('invoice_id.invoice_line_ids.product_id')
+        stock_location = self.env.ref('stock.stock_location_stock')
+        customer_location = self.env.ref('stock.stock_location_customers')
         product = self.product_id
+        # lot = 1
+        # product_lot = self.env.ref('product.product_category_all')
         qty = 1
         move = self.env['stock.move'].create({
             'name': 'MyLocation',
             'location_id': customer_location.id,
             'location_dest_id': stock_location.id,
             'product_id': product.id,
-            'product_uom': 1.0,
-            # 'product_uom': product.uom_id.id,
-            # 'product_uom_qty': product.delivery_quantity,
+            # 'lot_id': lot.id,
+            'product_uom': product.uom_id.id,
             'product_uom_qty': qty,
         })
         print("Data", move)
@@ -76,8 +78,6 @@ class ProductWarranty(models.Model):
         move._action_assign()
         move.move_line_ids.write({'qty_done': qty})
         move._action_done()
-
-
 
 
     def action_product_moves(self):
@@ -98,20 +98,18 @@ class ProductWarranty(models.Model):
 
     @api.model
     def action_return_product(self):
-        # customer_location = self.env.ref('stock.stock_location_stock')
-        stock_location = self.env.ref('location_mylocation')
-        customer_location = self.env.ref('stock.stock_location_customer')
-        # product = self.env.ref('invoice_id.invoice_line_ids.product_id')
+        stock_location = self.env.ref('stock.stock_location_stock')
+        customer_location = self.env.ref('stock.stock_location_customers')
         product = self.product_id
+        # lot =self.lot_id
         qty = 1
         move = self.env['stock.move'].create({
             'name': 'MyLocation',
             'location_id': stock_location.id,
             'location_dest_id': customer_location.id,
+            'lot_id': True,
             'product_id': product.id,
-            'product_uom': 1.0,
-            # 'product_uom': product.uom_id.id,
-            # 'product_uom_qty': product.delivery_quantity,
+            'product_uom': product.uom_id.id,
             'product_uom_qty': qty,
         })
         print("Data", move)
@@ -119,3 +117,7 @@ class ProductWarranty(models.Model):
         move._action_assign()
         move.move_line_ids.write({'qty_done': qty})
         move._action_done()
+
+
+
+

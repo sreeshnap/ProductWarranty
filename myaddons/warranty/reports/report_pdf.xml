@@ -2,7 +2,7 @@
     <report
             id="report_warranty_request"
             string="Warranty"
-            model="warranty.request"
+            model="sale.order"
             report_type="qweb-pdf"
             name="warranty.print_reports_pdf"
             file="warranty.print_reports_pdf"/>

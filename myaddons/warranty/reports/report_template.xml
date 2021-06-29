@@ -4,19 +4,14 @@
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
                 <div class="page">
-                                        <h1 align="center">
-                                            Warranty Report
-                                        </h1>
+                    <h1 align="center">
+                        Warranty Report
+                    </h1>
                     <div class="oe_structure"/>
                     <div class="row">
                         <table class="table table_condensed">
                             <thead>
-                                <tr>
-                                    <t t-foreach="docs" t-as="doc">
-                                        <!--                                    <t t-call="report_warranty_cards"/>-->
-<!--                                        <h2>TestPrint</h2>-->
-                                    </t>
-                                </tr>
+
                                 <tr>
                                     <th style="text-align:left;">
                                         <strong>Sl No:</strong>
@@ -30,25 +25,38 @@
                                     <th style="text-align:left;">
                                         <strong>Customer Name:</strong>
                                     </th>
-                                    <th style="text-align:left;">
-                                        <strong>Price:</strong>
-                                    </th>
+                                    <!--                                    <th style="text-align:left;">-->
+                                    <!--                                        <strong>Price:</strong>-->
+                                    <!--                                    </th>-->
                                 </tr>
                             </thead>
-                            <tbody>
-                                <t t-foreach="selected_product_name" t-as="o">
-                                    <tr>
-                                        <td style="text_align:left;">
-                                            <t t-esc="o['Product_Name']"/>
-                                        </td>
-                                        <td style="text_align:left;">
-                                            <t t-esc="o['Lot']"/>
-                                        </td>
-                                        <td style="text_align:left;">
-                                            <t t-esc="o['Customer_Name']"/>
-                                        </td>
-                                    </tr>
-                                </t>
+
+                            <tbody style="font-size:12px" t-foreach="fetched_data" t-as="fetch">
+                                <tr>
+
+                                    <td class="text_right">
+                                        <span t-esc="fetch.get('sl_no')"/>
+                                    </td>
+
+                                    <td class="text_right">
+                                        <span t-esc="fetch.get('product_id')"/>
+                                    </td>
+
+                                    <td class="text_right">
+                                        <span t-esc="fetch.get('lot_id')"/>
+                                    </td>
+
+                                    <td class="text_right">
+                                        <span t-esc="fetch.get('customer_id')"/>
+                                    </td>
+
+                                    <!--                                    <td class="text_right">-->
+                                    <!--                                        <span t-esc="fetch.get('price')"/>-->
+                                    <!--                                    </td>-->
+
+
+                                </tr>
+
                             </tbody>
                         </table>
                     </div>
