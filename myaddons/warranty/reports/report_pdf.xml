@@ -1,8 +1,8 @@
 <odoo>
     <report
             id="report_warranty_request"
-            string="Warranty"
-            model="sale.order"
+            string="warranty"
+            model="warranty.report.wizard"
             report_type="qweb-pdf"
             name="warranty.print_reports_pdf"
             file="warranty.print_reports_pdf"/>

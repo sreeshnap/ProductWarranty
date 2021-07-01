@@ -26,6 +26,7 @@ class ProductWarranty(models.Model):
     warranty_expiry = fields.Date(string="Warranty Expiry", compute='_compute_warranty_expiry')
 
     move_id = fields.Many2one("stock.move")
+    # invoice_list_id = fields.Many2one('account.move')
 
     # price = fields.Integer(related='product_id.standard_price', store=True)
 
@@ -61,14 +62,27 @@ class ProductWarranty(models.Model):
 
     def action_submit(self):
         self.state = 'to approve'
+        self.invoice_id.write({
+            'invoice_request': [(1, 0, {
+                'invoice_id': self.invoice_id,
+                'customer_id': self.customer_id,
+                'product_id': self.product_id,
+                'lot_id': self.lot_id,
+                'state': self.state
+            })]
+        })
+
 
     def action_approve(self):
         self.state = 'approved'
-        if self.state == 'approved':
-            self.action_approve_warranty()
 
-            # if self.state == 'done':
-            #     self.state = 'product received'
+        if self.state == 'approved':
+            if self.product_id.has_warranty:
+                self.action_approve_warranty()
+
+    # def action_done(self):
+    #     self.state = 'product received'
+
 
     @api.model
     def action_approve_warranty(self):
@@ -89,7 +103,7 @@ class ProductWarranty(models.Model):
         print("Data", self.move_id)
         self.move_id._action_confirm()
         self.move_id.move_line_ids.write({'qty_done': qty})
-        # move._action_done()
+        # self.move_id._action_done()
         self.move_id._action_assign()
 
     def action_product_moves(self):
@@ -130,3 +144,15 @@ class ProductWarranty(models.Model):
         self.move_id.move_line_ids.write({'qty_done': qty})
         # move._action_done()
         self.move_id._action_assign()
+
+    # @api.model
+    #
+    #     'name':'Invoice_list',
+    #     'domain': [('invoice_id', '=', self.invoice_id.id)],
+    #     'res_model': 'account.move',
+    #     'res_id': self.account_id.id,
+    #     'view_type': 'form',
+    #     'view_mode': 'tree,form',
+    #     'type': 'ir.actions.act_window'
+    #
+

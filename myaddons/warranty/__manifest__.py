@@ -15,7 +15,7 @@
         'security/security.xml',
         'data/warranty_location_data.xml',
         'view/invo.xml',
-        # 'view/stock_move.xml',
+        'view/stock_move.xml',
         'wizard/warranty_report_wizard_view.xml',
         'reports/report_pdf.xml',
         'reports/report_template.xml',

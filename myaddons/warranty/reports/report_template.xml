@@ -11,7 +11,6 @@
                     <div class="row">
                         <table class="table table_condensed">
                             <thead>
-
                                 <tr>
                                     <th style="text-align:left;">
                                         <strong>Sl No:</strong>
@@ -25,38 +24,24 @@
                                     <th style="text-align:left;">
                                         <strong>Customer Name:</strong>
                                     </th>
-                                    <!--                                    <th style="text-align:left;">-->
-                                    <!--                                        <strong>Price:</strong>-->
-                                    <!--                                    </th>-->
                                 </tr>
                             </thead>
 
                             <tbody style="font-size:12px" t-foreach="fetched_data" t-as="fetch">
                                 <tr>
-
                                     <td class="text_right">
                                         <span t-esc="fetch.get('sl_no')"/>
                                     </td>
-
                                     <td class="text_right">
                                         <span t-esc="fetch.get('product_id')"/>
                                     </td>
-
                                     <td class="text_right">
                                         <span t-esc="fetch.get('lot_id')"/>
                                     </td>
-
                                     <td class="text_right">
                                         <span t-esc="fetch.get('customer_id')"/>
                                     </td>
-
-                                    <!--                                    <td class="text_right">-->
-                                    <!--                                        <span t-esc="fetch.get('price')"/>-->
-                                    <!--                                    </td>-->
-
-
                                 </tr>
-
                             </tbody>
                         </table>
                     </div>
@@ -64,6 +49,5 @@
                 </div>
             </t>
         </t>
-
     </template>
 </odoo>
