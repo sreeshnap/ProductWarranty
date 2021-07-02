@@ -24,6 +24,9 @@
                                     <th style="text-align:left;">
                                         <strong>Customer Name:</strong>
                                     </th>
+                                    <th style="text-align:left;">
+                                        <strong>Price:</strong>
+                                    </th>
                                 </tr>
                             </thead>
 
@@ -40,6 +43,9 @@
                                     </td>
                                     <td class="text_right">
                                         <span t-esc="fetch.get('customer_id')"/>
+                                    </td>
+                                    <td class="text_right">
+                                        <span t-esc="fetch.get('price_id')"/>
                                     </td>
                                 </tr>
                             </tbody>

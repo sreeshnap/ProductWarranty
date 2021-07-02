@@ -4,7 +4,7 @@
         <field name="name">warranty sequence</field>
         <field name="code">warranty.service</field>
         <field name="active">TRUE</field>
-        <field name="prefix">SS</field>
+        <field name="prefix">WR</field>
         <field name="padding">6</field>
         <field name="number_next">1</field>
         <field name="number_increment">1</field>

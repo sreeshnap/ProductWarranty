@@ -14,7 +14,7 @@ class ProductWarrantyWizard(models.TransientModel):
             'model': self._name,
             'ids': self.ids,
             'product_id': self.product_id.id,
-            'date' : self.date
+            'date': self.date,
             # 'form': self.read()[0],
         }
         return self.env.ref("warranty.report_warranty_request").report_action(self, data=data)

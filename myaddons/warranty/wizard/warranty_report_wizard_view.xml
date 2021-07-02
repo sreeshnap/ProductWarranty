@@ -17,7 +17,7 @@
         </record>
 
         <record id="warranty_wizard_test_action" model="ir.actions.act_window">
-            <field name="name">warranty.report.view.wizard</field>
+            <field name="name">warranty.report</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">warranty.report.wizard</field>
             <field name="view_mode">form</field>
