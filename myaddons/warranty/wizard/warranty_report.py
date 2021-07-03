@@ -28,7 +28,8 @@ class SampleReportPrint(models.AbstractModel):
         if data['product_id'] and data['date']:
             query = """
                               SELECT row_number() over(ORDER BY warranty_data.invoice_id) as sl_no,
-                              product.name as product_id,lot.name as lot_id,warranty_data.invoice_date as date,customer.name as customer_id
+                              product.name as product_id,lot.name as lot_id,warranty_data.invoice_date as date,
+                              customer.name as customer_id,product.list_price as price_id
                               from warranty_request as warranty_data LEFT JOIN product_template as product 
                               on product.id = warranty_data.product_id LEFT JOIN res_partner as customer 
                               on customer.id = warranty_data.customer_id LEFT JOIN stock_production_lot as lot
@@ -40,8 +41,8 @@ class SampleReportPrint(models.AbstractModel):
         elif data['product_id']:
             query = """
                               SELECT row_number() over(ORDER BY warranty_data.invoice_id) as sl_no,
-                              product.name as product_id,lot.name as lot_id,customer.name as customer_id
-                              from warranty_request as warranty_data LEFT JOIN product_template as product 
+                              product.name as product_id,lot.name as lot_id,customer.name as customer_id,
+                              product.list_price as price_id from warranty_request as warranty_data LEFT JOIN product_template as product 
                               on product.id = warranty_data.product_id LEFT JOIN res_partner as customer 
                               on customer.id = warranty_data.customer_id LEFT JOIN stock_production_lot as lot
                               on lot.id = warranty_data.lot_id
@@ -50,7 +51,8 @@ class SampleReportPrint(models.AbstractModel):
         elif data['date']:
             query = """
                               SELECT row_number() over(ORDER BY warranty_data.invoice_id) as sl_no,
-                              product.name as product_id,lot.name as lot_id,warranty_data.invoice_date as date,customer.name as customer_id
+                              product.name as product_id,lot.name as lot_id,warranty_data.invoice_date as date,
+                              customer.name as customer_id,product.list_price as price_id
                               from warranty_request as warranty_data LEFT JOIN product_template as product 
                               on product.id = warranty_data.product_id LEFT JOIN res_partner as customer 
                               on customer.id = warranty_data.customer_id LEFT JOIN stock_production_lot as lot
