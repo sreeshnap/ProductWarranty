@@ -5,7 +5,7 @@
         <field name="model">warranty.request</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="invoice_id"/>
+                <field name="name"/>
                 <field name="customer_id"/>
                 <field name="product_id"/>
                 <field name="lot_id"/>
@@ -31,13 +31,18 @@
 
                 </header>
                 <sheet>
+
                     <div class="oe_button_box" name="button_box">
                         <button name="action_product_moves" class="oe_stat_button" icon="fa-arrows"
                                 type="object" string="Moves"
                                 widget="statinfo"/>
+
                     </div>
 
                     <group>
+
+                          <field name="name" style="font-size:25px"/>
+
                         <group>
                             <field name="invoice_id"/>
                             <field name="customer_id"/>

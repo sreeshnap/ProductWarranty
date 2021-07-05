@@ -11,7 +11,7 @@ class ProductWarranty(models.Model):
     # product_id = fields.Many2one('product.product', string="Product Name", domain="[('id', '=', invoice_id.invoice_line_ids.product_id)]")
     # product_id = fields.Many2one('product.product', string="Product Name",
     #                              related='invoice_id.invoice_line_ids.product_id', store=True)
-    product_id = fields.Many2one('product.product', string="Product Name", store=True)
+    product_id = fields.Many2one('product.product', string="Product Name")
     # lot_id = fields.Many2one('stock.production.lot', string="Lot Number")
     lot_id = fields.Many2one('stock.production.lot', string="Lot Number", related='product_id.stock_move_ids.move_line_ids.lot_id', store=True)
 
@@ -27,6 +27,7 @@ class ProductWarranty(models.Model):
 
     warranty_expiry = fields.Date(string="Warranty Expiry", compute='_compute_warranty_expiry')
     move_id = fields.Many2one("stock.move")
+    # product_tmpl_id = fields.Many2one('product.product', store=True)
 
     @api.onchange('invoice_id')
     def _onchange_invoice_id(self):
@@ -58,7 +59,7 @@ class ProductWarranty(models.Model):
     def action_submit(self):
         self.state = 'to approve'
         self.invoice_id.write({
-            'invoice_request': [(1, 0, {
+            'invoice_request_ids': [(1, 0, {
                 'invoice_id': self.invoice_id,
                 'customer_id': self.customer_id,
                 'product_id': self.product_id,

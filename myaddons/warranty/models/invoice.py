@@ -5,6 +5,6 @@ class ProductWarranty(models.Model):
 
     _inherit = "account.move"
 
-    invoice_request = fields.One2many('warranty.request', 'invoice_id')
+    invoice_request_ids = fields.One2many('warranty.request', 'invoice_id')
 
 

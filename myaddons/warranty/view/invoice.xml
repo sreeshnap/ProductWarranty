@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Warranty Info" name="warranty_info">
-                    <field name="invoice_request">
+                    <field name="invoice_request_ids">
                         <tree editable="bottom">
                             <field name="invoice_id"/>
                             <field name="customer_id"/>
