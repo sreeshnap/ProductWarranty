@@ -16,6 +16,9 @@ discount to a customer.
         'views/template.xml',
         'views/pos_product_discount.xml',
     ],
-    'qweb': [],
+    'qweb': [
+        'static/src/xml/discount_price_tag.xml',
+        'static/src/xml/discount_receipt.xml',
+    ],
     'installable': True,
 }

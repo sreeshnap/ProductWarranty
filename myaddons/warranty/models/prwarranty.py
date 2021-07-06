@@ -86,8 +86,8 @@ class ProductWarranty(models.Model):
         product = self.product_id
         # lot_id = self.lot_id
         qty = 1
-        # lot = self.env['stock.production.lot'].search([('id', '=', self.lot_id.id)])
-
+        # print(lot_id)
+        # print(lot_id.id)
         self.move_id = self.env['stock.move'].create({
             'name': 'MyLocation',
             'location_id': customer_location.id,
@@ -99,11 +99,10 @@ class ProductWarranty(models.Model):
         })
         print("Data", self.move_id)
         self.move_id._action_confirm()
+
         self.move_id.move_line_ids.write({'qty_done': qty})
         # self.move_id._action_done()
         self.move_id._action_assign()
-
-
 
     def action_product_moves(self):
         # pass
