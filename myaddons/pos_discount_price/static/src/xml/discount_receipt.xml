@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-   <t t-extend="OrderReceipt">
-       <t t-jquery=".pos-receipt .pos-receipt-discount" t-operation='append'>
-<!--           <t t-if='receipt.client'>-->
-<!--               <div style="font-weight:bold;">Customer: <t t-esc='receipt.client'/></div>-->
-               <t t-if='widget.pos.get_product().discount'>
-                   <div style="font-weight:bold;">Discount: <t t-esc='widget.pos.get_product().discount'/></div>
-<!--               </t>-->
-           </t>
-       </t>
-   </t>
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+             <xpath expr="//div[hasclass('orderlines')]" position="before">
+                <span class="icon"><i class="fa fa-tag"></i>
+                    <span>Discount</span>
+                    <t t-esc='discount'/>
+                </span>
+            </xpath>
+    </t>
 </templates>
+
+

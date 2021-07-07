@@ -19,6 +19,7 @@ discount to a customer.
     'qweb': [
         'static/src/xml/discount_price_tag.xml',
         'static/src/xml/discount_receipt.xml',
+        'static/src/xml/action_button.xml',
     ],
     'installable': True,
 }

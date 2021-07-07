@@ -4,7 +4,7 @@
           <xpath expr="." position="inside">
               <script type="text/javascript" src="/pos_discount_price/static/src/js/discount_price_tag.js"></script>
               <script type="text/javascript" src="/pos_discount_price/static/src/js/discount_receipt.js"></script>
-
+              <script type="text/javascript" src="/pos_discount_price/static/src/js/action_button.js"></script>
 
           </xpath>
         </template>

@@ -60,7 +60,7 @@ class ProductWarranty(models.Model):
         self.state = 'to approve'
         self.invoice_id.write({
             'invoice_request_ids': [(1, 0, {
-                'invoice_id': self.invoice_id,
+                'name': self.name,
                 'customer_id': self.customer_id,
                 'product_id': self.product_id,
                 'lot_id': self.lot_id,
