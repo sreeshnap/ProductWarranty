@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-
-<!--    <t t-name="DiscountButton">-->
-<!--        <div class="control-buttons">-->
-<!--            <i class="fa fa-tag" />Discount-->
-<!--        </div>-->
-<!--    </t>-->
-
-    <t t-name="DiscountButtons" owl="1">
+    <t t-name="CustomDiscountButtons" owl="1">
        <span class="control-button" t-att-class="is_available()?    'highlight' : ''">
-           <i class="fa fa-star"></i>
+           <i class="fa fa-tag"></i>
            <span> </span>
            <span>Discount Button</span>
        </span>
    </t>
-
 </templates>

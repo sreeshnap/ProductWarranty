@@ -2,11 +2,12 @@
 <templates id="template" xml:space="preserve">
     <t t-extend="ProductItem" t-inherit="point_of_sale.ProductItem"
        t-inherit-mode="extension" owl="1">
+
             <xpath expr="//div[hasclass('product-img')]" position="inside">
-                <span class="icon"><i class="fa fa-tag"></i>
-                    <span>Discount</span>
-                    <t t-esc='discount'/>
-                </span>
+                            <span class="icon"><i class="fa fa-tag"></i>
+                                <span>Discount</span>
+                                <!--                                <t t-esc='line.product_discount'/>-->
+                            </span>
             </xpath>
     </t>
 </templates>

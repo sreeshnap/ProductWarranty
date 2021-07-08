@@ -13,12 +13,15 @@ discount to a customer.
 """,
     'depends': ['base', 'point_of_sale', 'product'],
     'data': [
-        'views/template.xml',
         'views/pos_product_discount.xml',
+        'views/template.xml',
+        'views/pos_confi_inherit.xml',
+
     ],
     'qweb': [
-        'static/src/xml/discount_price_tag.xml',
+
         'static/src/xml/discount_receipt.xml',
+        'static/src/xml/discount_price_tag.xml',
         'static/src/xml/action_button.xml',
     ],
     'installable': True,

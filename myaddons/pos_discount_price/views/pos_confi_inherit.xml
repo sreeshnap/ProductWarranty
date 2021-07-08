@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_inherit_pos_discount" model="ir.ui.view">
+        <field name="name">pos.confi.inherit</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+
+                <field name="module_pos_discount" position="after">
+                    <field name="discount_percentage"/>
+                </field>
+
+
+        </field>
+    </record>
+
+</odoo>
