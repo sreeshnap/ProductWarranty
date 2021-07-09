@@ -7,11 +7,19 @@
         <field name="arch" type="xml">
 
                 <field name="module_pos_discount" position="after">
-                    <field name="discount_percentage"/>
+                    <group>
+                        <label for="discount_percentage" string=" "/>
+                        <field name="discount_percentage"/>
+                    </group>
                 </field>
 
 
-        </field>
-    </record>
+            <field name="manual_discount" position="after">
+                <field name="discount_enable" attrs="{'invisible': 1}"/>
+            </field>
 
+
+        </field>
+
+    </record>
 </odoo>

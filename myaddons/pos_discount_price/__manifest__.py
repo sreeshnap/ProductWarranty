@@ -13,10 +13,10 @@ discount to a customer.
 """,
     'depends': ['base', 'point_of_sale', 'product'],
     'data': [
+
+        'views/pos_confi_inherit.xml',
         'views/pos_product_discount.xml',
         'views/template.xml',
-        'views/pos_confi_inherit.xml',
-
     ],
     'qweb': [
 
