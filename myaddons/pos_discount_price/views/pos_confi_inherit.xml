@@ -6,12 +6,14 @@
         <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
         <field name="arch" type="xml">
 
-                <field name="module_pos_discount" position="after">
+            <field name="module_pos_discount" position="after">
+                <div class="row mt16">
                     <group>
-                        <label for="discount_percentage" string=" "/>
                         <field name="discount_percentage"/>
+                        <label for="discount_percentage" string=" "/>
                     </group>
-                </field>
+                </div>
+            </field>
 
 
             <field name="manual_discount" position="after">
@@ -22,4 +24,13 @@
         </field>
 
     </record>
+<!--    <record id="settings_action" model="ir.actions.act_window">-->
+<!--        <field name="name">Your configuration</field>-->
+<!--        <field name="res_model">point_of_sale.pos_config_view_form</field>-->
+<!--        <field name="view_id" ref="pos_config_inherit_pos_discount"/>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="target">inline</field>-->
+<!--    </record>-->
+<!--    <menuitem id="your_settings_menu" name="Your settings"-->
+<!--              parent="menu_point of sale_products" action="settings_action"/>-->
 </odoo>
