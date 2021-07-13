@@ -5,11 +5,7 @@ class PosConfig(models.Model):
     _inherit = 'pos.config'
 
     discount_percentage = fields.Boolean(string="Discount Percentage", default=False)
-    discount_enable = fields.Boolean(string="Discount Enable")
-
-    @api.onchange('discount_percentage')
-    def _default_product_discount(self):
-        if self.discount_percentage:
-            self.discount_enable = True
-        else:
-            self.discount_enable = False
+    percentage = fields.Integer(string="Percentage")
+    discount_product_id = fields.Many2one('product.product', string='Discount Product',
+                                          domain="[('sale_ok', '=', True)]",
+                                          help='The product used to model the discount.')

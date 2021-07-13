@@ -13,24 +13,17 @@
                         <label for="discount_percentage" string=" "/>
                     </group>
                 </div>
+                <div class="row mt16">
+
+                        <field name="percentage" options="{'no_quick_create':True, 'no_create_edit': True}"
+                                   attrs="{'invisible':[('discount_percentage', '=', False)]}"/>
+                </div>
             </field>
 
-
-            <field name="manual_discount" position="after">
-                <field name="discount_enable" attrs="{'invisible': 1}"/>
-            </field>
 
 
         </field>
 
     </record>
-<!--    <record id="settings_action" model="ir.actions.act_window">-->
-<!--        <field name="name">Your configuration</field>-->
-<!--        <field name="res_model">point_of_sale.pos_config_view_form</field>-->
-<!--        <field name="view_id" ref="pos_config_inherit_pos_discount"/>-->
-<!--        <field name="view_mode">form</field>-->
-<!--        <field name="target">inline</field>-->
-<!--    </record>-->
-<!--    <menuitem id="your_settings_menu" name="Your settings"-->
-<!--              parent="menu_point of sale_products" action="settings_action"/>-->
+
 </odoo>

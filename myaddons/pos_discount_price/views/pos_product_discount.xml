@@ -6,8 +6,7 @@
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
 <!--                        <xpath expr="//field[@name='type']" position="after">-->
-<!--                            <field name="product_discount" options="{'no_quick_create':True, 'no_create_edit': True}"-->
-<!--                                   attrs="{'invisible':[('discount_enable', '=', False)]}"/>-->
+<!--                            <field name="product_discount"/>-->
 <!--                        </xpath>-->
 
             <field name="type" position="after">
