@@ -6,6 +6,9 @@ class PosConfig(models.Model):
 
     discount_percentage = fields.Boolean(string="Discount Percentage", default=False)
     percentage = fields.Integer(string="Percentage")
-    discount_product_id = fields.Many2one('product.product', string='Discount Product',
-                                          domain="[('sale_ok', '=', True)]",
-                                          help='The product used to model the discount.')
+    discount_product_id = fields.Many2one('product.product', string='Discount Product', domain="[('sale_ok', '=', True)]")
+
+
+
+
+

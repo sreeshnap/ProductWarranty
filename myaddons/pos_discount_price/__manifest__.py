@@ -11,7 +11,7 @@ This module allows the cashier to quickly give percentage-based
 discount to a customer.
 
 """,
-    'depends': ['base', 'point_of_sale', 'product'],
+    'depends': ['base', 'point_of_sale', 'product',],
     'data': [
 
         'views/pos_confi_inherit.xml',

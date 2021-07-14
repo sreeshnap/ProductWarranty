@@ -23,21 +23,47 @@ odoo.define('pos_custom_buttons.DiscountButton', function(require) {
             });
              if (confirmed) {
                 const val = Math.round(Math.max(0,Math.min(100,parseFloat(payload))));
+                console.log(val)
                 await self.apply_discount(val);
             }
        }
-         async apply_discount(pc) {
+         async apply_discount(val) {
             var order    = this.env.pos.get_order();
-            var lines    = order.get_orderlines();
-//            var product  = this.env.pos.db.get_product_by_id(this.env.pos.config.discount_product_id[0]);
-            var product  = this.env.pos.db.get_product_by_id;
+            var lines    = order.get_orderlines().length;
+            var product  = this.env.pos.db.get_product_by_id(this.env.pos.config.discount_product_id);
+
                 console.log(product)
                 console.log(order)
                 console.log(lines)
                 return;
-
             }
-//        price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+//
+//            var i = 0;
+//            while ( i < lines.length ) {
+//                if (lines[i].get_product() === product) {
+//                    order.remove_orderline(lines[i]);
+//                } else {
+//                    i++;
+//                }
+//            }
+            var price_to_discount = order.get_total_without_tax();
+            if (product.taxes_id.length){
+                var first_tax = this.env.pos.taxes_by_id[product.taxes_id[0]];
+                if (first_tax.price_include) {
+                    price_to_discount = order.get_total_with_tax();
+                }
+            }
+
+          var discount = - val / 100.0 * price_to_discount;
+          if( discount < 0 ){
+                order.add_product(product, {
+                    price: discount,
+                    lst_price: discount,
+                    extras: {
+                        price_manually_set: true,
+                    },
+                });
+            }
    }
    CustomDiscountButtons.template = 'CustomDiscountButtons';
    ProductScreen.addControlButton({
