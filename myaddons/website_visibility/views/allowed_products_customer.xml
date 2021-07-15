@@ -1,0 +1,22 @@
+<odoo>
+    <record id="allowed_products_customer" model="ir.ui.view">
+        <field name="name">allowed.products.customer</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="website" position="after">
+<!--            <notebook position="inside">-->
+<!--                <page string="Allowed Products" name="allowed_products">-->
+                    <field name="allowed_products_id"/>
+<!--                        <tree editable="bottom">-->
+<!--                            <field name="product_id"/>-->
+<!--                        </tree>-->
+                    </field>
+<!--                </page>-->
+<!--            </notebook>-->
+
+        </field>
+    </record>
+
+</odoo>
+
