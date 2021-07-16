@@ -10,10 +10,10 @@ This module allows the cashier to quickly give percentage-based
 discount to a customer.
 
 """,
-    'depends': ['base', 'web',],
+    'depends': ['base', 'website', 'website_sale'],
     'data': [
         # 'views/allowed_products_customer.xml',
-        # 'views/buy_now_button.xml',
+        'views/buy_now_button.xml',
     ],
     'qweb': [
 

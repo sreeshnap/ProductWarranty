@@ -1,19 +1,9 @@
 <odoo>
-
-    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Add Product">
-        <xpath expr="." position="inside">
-<!--            <link rel="stylesheet" href="/bi_website_add_product/static/src/css/custom.css"/>-->
+    <template id="buy_now_button" inherit_id="website_sale.products_item" name="buy_now_button">
+        <xpath expr="//form[@action='/shop/cart/update']" position="after">
+            <span>
+                <strong>Buy Now</strong>
+            </span>
         </xpath>
     </template>
-
-    <template id="add_to_buy_now" inherit_id="website_sale.products_item" customize_show="True" name="Buy Now"
-              priority="20">
-        <xpath expr="//form[@action='/shop/cart/update']" method="post" position="replace">
-            <!--        <xpath expr="//div[hasclass('o_wsale_product_btn')]" position="inside">-->
-            <!--            <t t-set="in_wish" t-value="product._is_in_wishlist()"/>-->
-            <!--            <t t-set="product_variant_id" t-value="product._get_first_possible_variant_id()"/>-->
-            <!--            <button t-if="product_variant_id" type="button" role="button" class="btn btn-secondary o_add_wishlist" t-att-disabled='in_wish or None' title="Add to Wishlist" t-att-data-product-template-id="product.id" t-att-data-product-product-id="product_variant_id" data-action="o_wishlist"><span class="fa fa-heart" role="img" aria-label="Add to wishlist"></span></button>-->
-        </xpath>
-    </template>
-
 </odoo>
