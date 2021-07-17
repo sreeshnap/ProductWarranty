@@ -7,7 +7,7 @@
         <xpath expr="//div[hasclass('product-img')]" position="inside">
                             <span class="icon"><i class="fa fa-tag"></i>
                                 <span>Discount%</span>
-                                <!--                                <t t-esc='line.product_discount'/>-->
+                                <t t-esc='props.product.product_discount'/>
                             </span>
 
         </xpath>

@@ -1,9 +1,8 @@
 <odoo>
-    <template id="buy_now_button" inherit_id="website_sale.products_item" name="buy_now_button">
-        <xpath expr="//form[@action='/shop/cart/update']" position="after">
-            <span>
-                <strong>Buy Now</strong>
-            </span>
-        </xpath>
-    </template>
+      <template id="product_buy_now_button" inherit_id="website_sale.products_item" active="False" customize_show="True" name="Buy Now">
+<!--          <xpath expr="//*[hasclass('product_price')]" position="after">-->
+           <xpath expr="//div[hasclass('o_wsale_product_btn')]" position="inside">
+                  <a href="#" role="button" id="buy_now" class="btn btn-outline-primary btn-lg mt16 d-block d-sm-inline-block"><i class="fa fa-bolt"/> Buy Now</a>
+          </xpath>
+      </template>
 </odoo>
