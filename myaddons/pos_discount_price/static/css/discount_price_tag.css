@@ -1,0 +1,11 @@
+.pos .product .product-img {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    vertical-align: top;
+    color: red;
+    line-height: 13px;
+    background: white;
+    padding: 2px 5px;
+    border-radius: 2px;
+}

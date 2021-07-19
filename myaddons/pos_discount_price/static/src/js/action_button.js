@@ -32,13 +32,17 @@ odoo.define('pos_custom_buttons.DiscountButton', function(require) {
             var lines    = order.get_orderlines();
             var product  = this.env.pos.db.get_product_by_id(this.env.pos.config.discount_product_id);
             var price = order.get_total_with_tax();
-
 //                console.log(order.get_total_with_tax())
-          var discount = - val / 100.0 * price;
-          console.log(discount)
+            var discount = - val / 100.0 * price;
+                console.log(discount)
 
-                return;
+            if( discount < 0 ){
+                var total_with_tax = order.get_total_with_tax()+discount;
+                console.log(total_with_tax)
             }
+                return;
+                }
+
 
 //            var i = 0;
 //            while ( i < lines.length ) {
@@ -57,7 +61,7 @@ odoo.define('pos_custom_buttons.DiscountButton', function(require) {
 //            }
 
 
-
+//
 //          if( discount < 0 ){
 //                order.add_product(product, {
 //                    price: discount,
@@ -67,6 +71,7 @@ odoo.define('pos_custom_buttons.DiscountButton', function(require) {
 //                    },
 //                });
 //            }
+//        }
    }
    CustomDiscountButtons.template = 'CustomDiscountButtons';
    ProductScreen.addControlButton({
