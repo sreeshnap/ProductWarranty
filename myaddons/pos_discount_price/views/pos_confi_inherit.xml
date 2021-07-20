@@ -6,7 +6,20 @@
         <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
         <field name="arch" type="xml">
 
-            <field name="module_pos_discount" position="after">
+<!--            <field name="manual_discount" position="after">-->
+<!--            <div id="btn_use_pos_discount" position="replace">-->
+<!--                    <div class="row mt16">-->
+<!--                        <label string="Discount Product" for="discount_product_id" class="col-lg-3 o_light_label"/>-->
+<!--                        <field name="discount_product_id" attrs="{'required':[('module_pos_discount_price','=',True)]}"/>-->
+<!--                    </div>-->
+<!--                    <div class="row">-->
+<!--                        <label string="Discount Percentage" for="discount_percentage" class="col-lg-3 o_light_label"/>-->
+<!--                        <field name="discount_percentage"/>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </field>-->
+
+            <field name="manual_discount" position="after">
                 <div class="row mt16">
                     <group>
                         <field name="discount_percentage"/>
@@ -17,11 +30,10 @@
 
                         <field name="percentage" options="{'no_quick_create':True, 'no_create_edit': True}"
                                    attrs="{'invisible':[('discount_percentage', '=', False)]}"/>
+                        <field name="discount_product_id" options="{'no_quick_create':True, 'no_create_edit': True}"
+                                   attrs="{'invisible':[('discount_percentage', '=', False)]}"/>
                 </div>
             </field>
-
-
-
         </field>
 
     </record>
