@@ -7,4 +7,8 @@ access_user,Access user,model_warranty_request,prwarranty_user,1,1,1,0
 access_warranty_report_wizard,warranty.report.wizard,model_warranty_report_wizard,base.group_user,1,1,1,1
 access_report_warranty_print_reports_pdf,report.warranty.print_reports_pdf,model_report_warranty_print_reports_pdf,base.group_user,1,1,1,1
 
+access_customer_product,customer.product,model_customer_product,base.group_user,1,1,1,1
+
+
+
 
