@@ -1,19 +1,36 @@
 <odoo>
-    <record id="allowed_products_customer" model="ir.ui.view">
-        <field name="name">allowed.products.customer</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="arch" type="xml">
-            <notebook position="inside">
-                <page string="Allowed Products" name="allowed_products">
-                    <field name="allowed_products_ids">
-                        <tree editable="bottom">
-                            <field name="product_id"/>
-                        </tree>
-                    </field>
-                </page>
-            </notebook>
-        </field>
-    </record>
+    <data>
+        <record id="allowed_products_customer" model="ir.ui.view">
+            <field name="name">allowed.products.customer</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Allowed Products" name="allowed_products">
+                        <field name="allowed_products_ids"/>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+
+        <record id="website_config_view_inherit" model="ir.ui.view">
+            <field name="name">website.config.view.inherit</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('app_settings_block')]/div[@id='website_selection_settings']"
+                       position="after">
+                    <div class="app_settings_block" data-string="Website" string="Website">
+                        <h2>Product Visibility</h2>
+                            <div class="mt16">
+                                <label class="o_light_label col-lg-3" for="available_product_ids"/>
+                                <field name="available_product_ids" widget="many2many_tags"/>
+                            </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
 </odoo>
 
