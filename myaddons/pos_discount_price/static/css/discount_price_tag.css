@@ -1,6 +1,6 @@
-.pos .product .product-img {
+.pos .product .product-tag {
     position: absolute;
-    top: 2px;
+    top: 20px;
     right: 2px;
     vertical-align: top;
     color: red;

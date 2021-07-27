@@ -5,10 +5,13 @@
 
 <!--            <xpath expr="//t[@t-foreach='product-img']//td[@id='product']" position="inside">-->
         <xpath expr="//div[hasclass('product-img')]" position="inside">
+                            <span class="product-tag">
                             <span class="icon"><i class="fa fa-tag"></i>
                                 <span>Discount%</span>
                                 <t t-esc='props.product.product_discount'/>
                             </span>
+                            </span>
+
 
         </xpath>
     </t>
