@@ -14,6 +14,7 @@ discount to a customer.
     'data': [
         'views/allowed_products_customer.xml',
         'views/buy_now_button.xml',
+        # 'views/user_login_allowed_products.xml',
     ],
     'qweb': [
 
