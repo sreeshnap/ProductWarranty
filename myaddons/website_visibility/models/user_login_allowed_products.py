@@ -23,8 +23,8 @@ class RelatedUserLogin(WebsiteSale):
         # for rec in var:
         #     if rec.id == 9:
         #         rec.name = 'Normal Desk'
-        var = res.qcontext.get('RelatedUserLogin')
-        print(var)
+        # var = res.qcontext.get('RelatedUserLogin')
+        # print(var)
         return res
 
         # var = request.env['website'].sudo.search[('user_ids.id')]
@@ -42,10 +42,10 @@ class RelatedUserLogin(WebsiteSale):
     #     # Compatibility pre-v14
     #     return request.redirect(_build_url_w_params("/shop/%s" % slug(product), request.params), code=301)
 
-    # @api.onchange('user')
-    # def _onchange_products(self, category, **post):
-    #     res = super(RelatedUserLogin, self)._onchange_products(categry='res.partner.product_visibility', **post)
-    #     return res
+    @api.onchange('user')
+    def _onchange_products(self, category, **post):
+        res = super(RelatedUserLogin, self)._onchange_products(categry='res.partner.product_visibility', **post)
+        return res
 
     # @api.onchange('user')
     # def set_values(self):
