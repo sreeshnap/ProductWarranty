@@ -23,9 +23,10 @@ class RelatedUserLogin(WebsiteSale):
         # for rec in var:
         #     if rec.id == 9:
         #         rec.name = 'Normal Desk'
-        # var = res.qcontext.get('RelatedUserLogin')
-        # print(var)
+        # var = res.qcontext.get('res')
+        # print(res)
         return res
+
 
         # var = request.env['website'].sudo.search[('user_ids.id')]
         # var = fields.Char("User ID", default=lambda self: self.env.user.name)
@@ -42,44 +43,15 @@ class RelatedUserLogin(WebsiteSale):
     #     # Compatibility pre-v14
     #     return request.redirect(_build_url_w_params("/shop/%s" % slug(product), request.params), code=301)
 
-    @api.onchange('user')
-    def _onchange_products(self, category, **post):
-        res = super(RelatedUserLogin, self)._onchange_products(categry='res.partner.product_visibility', **post)
-        return res
+    # @api.onchange('user')
+    # def _onchange_products(self, category, **post):
+    #     res = super(RelatedUserLogin, self)._onchange_products(categry='res.partner.product_visibility', **post)
+    #     return res
 
-    # @api.onchange('user')
-    # def set_values(self):
-    #     res = super(RelatedUserLogin, self).set_values()
-    #     if not self.user:
-    #         self.website_available_cat_ids = None
-    #         self.website_available_product_ids = None
-    #         self.env['res.partner'].sudo().set_param('filter_mode', 'product_only')
-    #     if self.filter_mode == 'product_only':
-    #         self.website_available_cat_ids = None
-    #     elif self.filter_mode == 'categ_only':
-    #         self.website_available_product_ids = None
-    #
-    #     self.env['website'].sudo().set_param('website_product_visibility.website_available_product_ids',
-    #                                                      self.website_available_product_ids.ids)
-    #     self.env['website'].sudo().set_param('website_product_visibility.website_available_cat_ids',
-    #                                                      self.website_available_cat_ids.ids)
-    #     return res
-    #
-    # @api.onchange('user')
-    # def get_values(self):
-    #     res = super(RelatedUserLogin, self).get_values()
-    #     product_ids = literal_eval(
-    #         self.env['website'].sudo().get_param('website_product_visibility.website_available_product_ids',
-    #                                                          'False'))
-    #     cat_ids = literal_eval(
-    #         self.env['website'].sudo().get_param('website_product_visibility.website_available_cat_ids', 'False'))
-    #     mod = self.env['website'].sudo().get_param('filter_mode')
-    #     res.update(
-    #         user=self.env['website'].sudo().get_param(
-    #             'user'),
-    #         filter_mode=mod if mod else 'product_only',
-    #         website_available_product_ids=[(6, 0, product_ids)],
-    #         website_available_cat_ids=[(6, 0, cat_ids)],
-    #     )
-    #     return res
+
+    @api.onchange('user')
+    def _onchange_user(self):
+        search_ids = self.search(cr, [('create_uid', '=', uid)])
+        for id in search_ids:
+            self.write(cr,uid,[id],{'current':'true'})
 

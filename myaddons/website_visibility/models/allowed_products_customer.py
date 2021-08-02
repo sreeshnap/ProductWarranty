@@ -18,4 +18,3 @@ class AllowedProductInherit(models.Model):
             self.website_available_cat_ids = None
             self.website_available_product_ids = None
 
-
